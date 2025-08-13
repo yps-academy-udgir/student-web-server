@@ -1,19 +1,23 @@
+import dotenv from 'dotenv';
+dotenv.config(); 
+
 import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import studentRoutes from './routes/studentRoutes';
 import authRoutes from './routes/authRoutes';
-import dotenv from 'dotenv';
 
-
-dotenv.config(); // Load .env variables at the start
-
-const JWT_SECRET = process.env.JWT_SECRET as string;
 
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT;
+// Check if JWT_SECRET is defined
+const JWT_SECRET = process.env.JWT_SECRET;
+
+if (!JWT_SECRET) {
+  throw new Error('JWT_SECRET is not defined in environment variables');
+}
 
 // Middleware
 app.use(cors());
