@@ -56,8 +56,8 @@ export const deleteStudent = async (req: any, res: any) => {
     res.status(500).json({
       success: false,
       error: error.message,
-      message: "Failed to delete student"
-    });
+      message: "Failed to delete student "
+    }); 
   }
 };
 
