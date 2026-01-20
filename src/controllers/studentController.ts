@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import Student, { IStudent } from '../models/Student';
+import { getAllStudentsService } from '../services/student.service';
 
 // Register student
 export const registerStudent = async (req: Request, res: Response) => {
@@ -19,7 +20,7 @@ export const registerStudent = async (req: Request, res: Response) => {
 // Get all students
 export const getAllStudents = async (_req: Request, res: Response) => {
   try {
-    const students = await Student.find();
+    const students = await getAllStudentsService();
     res.json({
       success: true,
       data: students,
