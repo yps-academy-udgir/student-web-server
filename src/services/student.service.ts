@@ -3,7 +3,7 @@ import { calculateAge } from "../utils/date.utils";
 import { validateAgeFromDOB } from "../utils/validation.utils";
 
 export const createStudentService = async (payload: any) => {
-  const dob = new Date(payload.dob);
+  const dob = new Date(`${payload.dateOfBirth}T00:00:00.000Z`);
 
   // Validate DOB age range
   validateAgeFromDOB(dob);

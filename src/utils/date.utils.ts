@@ -1,16 +1,20 @@
 export const calculateAge = (dob: Date): number => {
+
     if (!dob) {
-        return 0;
+      return 0;
     }
-    const today = new Date();
-    let age = today.getFullYear() - dob.getFullYear();
+  const today = new Date();
+  const birthDate = new Date(
+    dob.getUTCFullYear(),
+    dob.getUTCMonth(),
+    dob.getUTCDate()
+  );
 
-    const monthDiff = today.getMonth() - dob.getMonth();
-    const dayDiff = today.getDate() - dob.getDate();
+  let age = today.getFullYear() - birthDate.getFullYear();
+  const m = today.getMonth() - birthDate.getMonth();
+  if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+    age--;
+  }
 
-    if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
-        age--;
-    }
-
-    return age;
+  return age;
 };
