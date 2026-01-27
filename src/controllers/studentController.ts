@@ -1,12 +1,11 @@
 import { Request, Response } from 'express';
 import Student, { IStudent } from '../models/Student';
-import { getAllStudentsService } from '../services/student.service';
+import { createStudentService, getAllStudentsService } from '../services/student.service';
 
 // Register student
 export const registerStudent = async (req: Request, res: Response) => {
   try {
-    const student: IStudent = new Student(req.body);
-    const saved = await student.save();
+    const saved = await createStudentService(req.body);
     res.status(201).json({
       success: true,
       data: saved,
